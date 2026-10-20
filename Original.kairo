@@ -1,0 +1,36 @@
+int val = 0;
+int old_val = 0;
+int state = 0;
+
+void setup() {
+	pinMode(13, OUTPUT);
+	pinMode(12, OUTPUT);
+	pinMode(11, OUTPUT);
+	pinMode(7, INPUT);
+}
+
+void loop() {
+	val = digitalRead(7);
+	if ((val == HIGH) && (old_val == LOW)) {
+		state = 1 + state;						          	//stateの値を1+stateにする
+
+		if (state > 3) {						             	//もしstateが3より大きいなら
+			state = 1;							              	//stateを1にする
+		}
+		digitalWrite(13, LOW);					        	//ボタンを推すたびにLED13をLOWにする
+		digitalWrite(12, LOW);					         	//上同様
+		digitalWrite(11, LOW);				        		//上同様
+		delay(200);								              	//ボタン長押しによる連続切り替え対策の0.2秒
+	}
+
+	old_val = val;
+	if (state == 1) {							            	//もしstateの値が1なら
+		digitalWrite(13, HIGH);					         	//LED13を点灯させる
+	}
+	else if (state == 2) {						        	//もしstateの値が2なら
+		digitalWrite(12, HIGH);			        			//LED12を点灯させる
+	}  
+	else if (state == 3) {							        //もしstateの値が3なら
+		digitalWrite(11, HIGH);						        //LED11を点灯させる
+	}
+}
