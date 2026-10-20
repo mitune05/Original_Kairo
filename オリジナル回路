@@ -14,17 +14,17 @@ void loop() {
 	if ((val == HIGH) && (old_val == LOW)) {
 		state = 1 + state;						          	//stateの値を1+stateにする
 
-		if (state > 3) {						             	//もしstateが3より大きいなら
-			state = 1;							              	//stateを1にする
+		if (state > 3) {						            //もしstateが3より大きいなら
+			state = 1;							            //stateを1にする
 		}
 		digitalWrite(13, LOW);					        	//ボタンを推すたびにLED13をLOWにする
 		digitalWrite(12, LOW);					         	//上同様
 		digitalWrite(11, LOW);				        		//上同様
-		delay(200);								              	//ボタン長押しによる連続切り替え対策の0.2秒
+		delay(200);								            //ボタン長押しによる連続切り替え対策の0.2秒
 	}
 
 	old_val = val;
-	if (state == 1) {							            	//もしstateの値が1なら
+	if (state == 1) {							            //もしstateの値が1なら
 		digitalWrite(13, HIGH);					         	//LED13を点灯させる
 	}
 	else if (state == 2) {						        	//もしstateの値が2なら
